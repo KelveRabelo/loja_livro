@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card">
+        <h5>AUTORES</h5>
+        <hr>
+        <a class="btn btn-success" href="{% url 'autor_add' %}">Adicionar</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Data Nascimento</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for autor in autores %}
+                <tr>
+                    <th>{{ autor.nome }}</th>
+                    <th>{{autor.email}}</th>
+                    <th>{{autor.data_nascimento}}</th>
+                    <th>
+                        <button class="btn btn-warning">Editar</button>
+                        <button class="btn btn-danger">Apagar</button>
+                    </th>
+                </tr>
+                {% endfor %}
+    
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
