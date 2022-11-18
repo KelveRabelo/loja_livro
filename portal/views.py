@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.shortcuts import render
 from portal.forms import AutorForm
 from portal.models import Autor, Editora, Formato, Livro
@@ -10,6 +11,7 @@ def home(requests):
 def dashboard(requests):
     return render(requests, 'portal/dashboard.html')
 
+#LISTA DE AUTORES
 def autor(requests):
     autores = Autor.objects.all()
     context = {
@@ -17,6 +19,7 @@ def autor(requests):
     }
     return render(requests, 'portal/autor.html', context)
 
+#ADICIONAR AUTOR
 def autor_add(requests):
     form = AutorForm(requests.POST or None)
 
@@ -28,8 +31,30 @@ def autor_add(requests):
     context = {
         'form': form
     }
-
     return render(requests, 'portal/autor_add.html', context)
+
+#EDITAR UM AUTOR
+def autor_edit(requests, autor_pk):
+    autor = Autor.objects.get(pk=autor_pk)
+
+    form = AutorForm(requests.POST or None, instance=autor)
+
+    if requests.POST:
+        if form.is_valid():
+            form.save()
+            return redirect('autor')
+
+    context = {
+        'form': form,
+    }
+    return render(requests, 'portal/autor_edit.html', context)
+
+#APAGAR UM AUTOR
+def autor_delete(requests, autor_pk):
+    autor = Autor.objects.get(pk=autor_pk)
+    autor_delete()
+
+    return redirect('autor')
 
 def editora(requests):
     return render(requests, 'portal/editora.html')

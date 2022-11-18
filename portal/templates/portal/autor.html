@@ -18,15 +18,14 @@
                 {% for autor in autores %}
                 <tr>
                     <th>{{ autor.nome }}</th>
-                    <th>{{autor.email}}</th>
-                    <th>{{autor.data_nascimento}}</th>
+                    <th>{{ autor.email }}</th>
+                    <th>{{ autor.data_nascimento }}</th>
                     <th>
-                        <button class="btn btn-warning">Editar</button>
-                        <button class="btn btn-danger">Apagar</button>
+                        <a href="{% url 'autor_edit' autor.id %}" class="btn btn-warning">Editar</a>
+                        <a href="{% url 'autor_delete' autor.id  %}" class="btn btn-danger">Apagar</a>
                     </th>
                 </tr>
                 {% endfor %}
-    
             </tbody>
         </table>
     </div>

@@ -3,12 +3,12 @@
 {% block content %}
     <div class="card">
         <div class="card-body">
-            <h4>Adicionar Autor</h4>
+            <h4>Editar Autor</h4>
             <hr>
-            <form action="{% url 'autor_add' %}" method="post">
+            <form action="{% url 'autor_edit' %}" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button class="btn btn-success" type="submit">Adicionar</button>
+                <button class="btn btn-success" type="submit">Salvar</button>
                 <a href="{% url 'autor' %}" class="btn btn-danger">Cancelar</a>
             </form>
         </div>
